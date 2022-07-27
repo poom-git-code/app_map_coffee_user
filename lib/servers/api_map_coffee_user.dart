@@ -27,3 +27,24 @@ Stream<QuerySnapshot>? apiGetAlluser(){
     return null;
   }
 }
+//------------------------------------------------------------------------------------------------------------
+Future<bool> apiUpdateUser(String id,String Image ,String User_ID, String password, String Name, String Email) async{
+
+  //สร้าง object เพื่อนไปเก็บที่ firestore database
+  MapCoffeeUser timeline = MapCoffeeUser(
+    image: Image,
+    userID: User_ID,
+    password: password,
+    name: Name,
+    email: Email,
+  );
+
+  //นำ object แปลงเป็น json แล้วส่งไปที่ firestore database
+  try{
+    await FirebaseFirestore.instance.collection("mcs_user").doc(id).update(timeline.toJson());
+    return true;
+  }catch(ex){
+    return false;
+  }
+}
+//------------------------------------------------------------------------------------------------------------
