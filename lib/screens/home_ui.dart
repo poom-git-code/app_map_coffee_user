@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:app_map_coffee_user/screens/show_shop_ui.dart';
@@ -149,6 +147,7 @@ class _HomeUIState extends State<HomeUI> {
                 indoorViewEnabled: false,
                 buildingsEnabled: false,
                 zoomControlsEnabled: false,
+                scrollGesturesEnabled: false,
               ),
             ),
             SingleChildScrollView(

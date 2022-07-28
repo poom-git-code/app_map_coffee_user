@@ -98,33 +98,34 @@ class _ShowImageUIState extends State<ShowImageUI> {
                 ),
                 itemBuilder: (context, index) {
                   return GridTile(
+                    footer: SingleChildScrollView(
+                      child: SizedBox(
+                        width: wi,
+                        height: hi,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        ShowimageMaxSize(
+                                          (snapshot.data! as QuerySnapshot).docs[index].id.toString(),
+                                          (snapshot.data! as QuerySnapshot).docs[index]['Email'],
+                                          (snapshot.data! as QuerySnapshot).docs[index]['url'],
+                                        )
+                                )
+                            );
+                          },
+                          child: Text(''),
+                        ),
+                      ),
+                    ),
                     child: Padding(
                       padding: EdgeInsets.all(3.0),
                       child: FadeInImage.memoryNetwork(
                         fit: BoxFit.cover,
                         placeholder: kTransparentImage,
-                        image: (snapshot.data! as QuerySnapshot).docs[index].get(
-                            'url'),
-                      ),
-                    ),
-                    footer: Container(
-                      width: wi,
-                      height: hi,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ShowimageMaxSize(
-                                        (snapshot.data! as QuerySnapshot).docs[index].id.toString(),
-                                        (snapshot.data! as QuerySnapshot).docs[index]['Email'],
-                                        (snapshot.data! as QuerySnapshot).docs[index]['url'],
-                                      )
-                              )
-                          );
-                        },
-                        child: Text(''),
+                        image: (snapshot.data! as QuerySnapshot).docs[index].get('url'),
                       ),
                     ),
                   );

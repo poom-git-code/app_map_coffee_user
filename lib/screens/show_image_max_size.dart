@@ -38,7 +38,7 @@ class _ShowimageMaxSizeState extends State<ShowimageMaxSize> {
             ),
             Container(
               width: wi,
-              height: hi * 0.13,
+              height: hi * 0.11,
               color: Colors.black26,
               child: Padding(
                 padding: EdgeInsets.only(left: wi * 0.05, top: hi * 0.02),
@@ -50,16 +50,19 @@ class _ShowimageMaxSizeState extends State<ShowimageMaxSize> {
                           Navigator.of(context).pop();
                         },
                         icon: Icon(
-                            FontAwesomeIcons.arrowLeftLong
+                          FontAwesomeIcons.arrowLeftLong,
+                          color: Colors.white70,
+                          size: 22,
                         )
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: wi * 0.25),
+                      padding: EdgeInsets.only(left: wi * 0.26),
                       child: Text(
                         'รูปภาพ',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 23
+                          fontSize: 20,
+                          color: Colors.white70
                         ),
                       ),
                     ),
