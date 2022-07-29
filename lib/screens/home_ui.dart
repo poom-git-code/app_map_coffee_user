@@ -116,129 +116,131 @@ class _HomeUIState extends State<HomeUI> {
         backgroundColor: const Color(0xffFFA238),
       ),
       drawer: MenuBarUi(),
-      body: SizedBox(
-        width: wi,
-        height: hi,
-        child: Column(
-          children: [
-            SizedBox(
-              width: wi,
-              height: hi * 0.4,
-              child: (applicationBloc.currentLocation == null)
-                  ? const Center(child: CircularProgressIndicator(),)
-                  : GoogleMap(
-                initialCameraPosition: CameraPosition(
-                  target: LatLng(
-                      applicationBloc.currentLocation!.latitude,
-                      applicationBloc.currentLocation!.longitude
-                  ),
-                  zoom: 15,
-                ),
-                mapType: MapType.terrain,
-                markers: gooMarker,
-                circles: gooCircle,
-                onMapCreated: (GoogleMapController controller) {
-                  //เอาตัว controller ที่สร้างมากำหนดให้กับ Google Map นี้
-                  gooController.complete(controller);
-                },
-                myLocationEnabled: true,
-                myLocationButtonEnabled: false,
-                mapToolbarEnabled: false,
-                indoorViewEnabled: false,
-                buildingsEnabled: false,
-                zoomControlsEnabled: false,
-                scrollGesturesEnabled: false,
-              ),
-            ),
-            SingleChildScrollView(
-              child: SizedBox(
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: wi,
+          height: hi,
+          child: Column(
+            children: [
+              SizedBox(
                 width: wi,
-                height: hi * 0.486,
-                child: StreamBuilder(
-                  stream: _userStrem,
-                  builder: (context, snapshot){
-                    if(snapshot.hasError)
-                    {
-                      return const Center(
-                        child: Text('พบข้อผิดพลาดกรุณาลองใหม่อีกครั้ง'),
-                      );
-                    }
-                    if(snapshot.connectionState == ConnectionState.waiting)
-                    {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return ListView.separated(
-                      // ignore: missing_return
-                      separatorBuilder: (context, index){
-                        return Container(
-                          height: 2,
-                          width: double.infinity,
-                          color: Color(0xff955000),
+                height: hi * 0.4,
+                child: (applicationBloc.currentLocation == null)
+                    ? const Center(child: CircularProgressIndicator(),)
+                    : GoogleMap(
+                  initialCameraPosition: CameraPosition(
+                    target: LatLng(
+                        applicationBloc.currentLocation!.latitude,
+                        applicationBloc.currentLocation!.longitude
+                    ),
+                    zoom: 15,
+                  ),
+                  mapType: MapType.terrain,
+                  markers: gooMarker,
+                  circles: gooCircle,
+                  onMapCreated: (GoogleMapController controller) {
+                    //เอาตัว controller ที่สร้างมากำหนดให้กับ Google Map นี้
+                    gooController.complete(controller);
+                  },
+                  myLocationEnabled: true,
+                  myLocationButtonEnabled: false,
+                  mapToolbarEnabled: false,
+                  indoorViewEnabled: false,
+                  buildingsEnabled: false,
+                  zoomControlsEnabled: false,
+                  scrollGesturesEnabled: false,
+                ),
+              ),
+              SingleChildScrollView(
+                child: SizedBox(
+                  width: wi,
+                  height: hi * 0.486,
+                  child: StreamBuilder(
+                    stream: _userStrem,
+                    builder: (context, snapshot){
+                      if(snapshot.hasError)
+                      {
+                        return const Center(
+                          child: Text('พบข้อผิดพลาดกรุณาลองใหม่อีกครั้ง'),
                         );
-                      },
-                      itemBuilder: (context, index){
-                        return ListTile(
-                          onTap: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ShowShopUI(
-                                      (snapshot.data! as QuerySnapshot).docs[index].id.toString(),
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Image'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['User_ID'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['password'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Email'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Location_Name'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Description'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Contact'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_Open'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_close'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Latitude'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Longitude'],
-                                      (snapshot.data! as QuerySnapshot).docs[index]['Province_ID']
-                                    )
-                                )
-                            );
-                          },
-                          leading: CircleAvatar(
-                            radius: 50,
-                            backgroundColor: Colors.transparent,
-                            child: ClipOval(
-                              child: FadeInImage.assetNetwork(
-                                placeholder: 'assets/images/Coffee_icon.png',
-                                image: (snapshot.data! as QuerySnapshot).docs[index]['Image'],
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
+                      }
+                      if(snapshot.connectionState == ConnectionState.waiting)
+                      {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                      return ListView.separated(
+                        // ignore: missing_return
+                        separatorBuilder: (context, index){
+                          return Container(
+                            height: 2,
+                            width: double.infinity,
+                            color: Color(0xff955000),
+                          );
+                        },
+                        itemBuilder: (context, index){
+                          return ListTile(
+                            onTap: (){
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ShowShopUI(
+                                        (snapshot.data! as QuerySnapshot).docs[index].id.toString(),
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Image'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['User_ID'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['password'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Email'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Location_Name'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Description'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Contact'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_Open'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_close'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Latitude'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Longitude'],
+                                        (snapshot.data! as QuerySnapshot).docs[index]['Province_ID']
+                                      )
+                                  )
+                              );
+                            },
+                            leading: CircleAvatar(
+                              radius: 50,
+                              backgroundColor: Colors.transparent,
+                              child: ClipOval(
+                                child: FadeInImage.assetNetwork(
+                                  placeholder: 'assets/images/Coffee_icon.png',
+                                  image: (snapshot.data! as QuerySnapshot).docs[index]['Image'],
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          title: Text(
-                            (snapshot.data! as QuerySnapshot).docs[index]['Location_Name'],
-                          ),
-                          subtitle: Text(
-                            '${'เปิด ' + (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_Open']} ปิด ' + (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_close'],
-                          ),
-                          trailing:IconButton(
-                            icon: const Icon(
-                              Icons.arrow_forward_ios,
-                              color: Color(0xff955000),
+                            title: Text(
+                              (snapshot.data! as QuerySnapshot).docs[index]['Location_Name'],
                             ),
-                            onPressed: (){
+                            subtitle: Text(
+                              '${'เปิด ' + (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_Open']} ปิด ' + (snapshot.data! as QuerySnapshot).docs[index]['Office_Hours_close'],
+                            ),
+                            trailing:IconButton(
+                              icon: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Color(0xff955000),
+                              ),
+                              onPressed: (){
 
-                            },
-                          ),
-                        );
-                      },
-                      itemCount: (snapshot.data! as QuerySnapshot).docs.length,
-                    );
-                  },
+                              },
+                            ),
+                          );
+                        },
+                        itemCount: (snapshot.data! as QuerySnapshot).docs.length,
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

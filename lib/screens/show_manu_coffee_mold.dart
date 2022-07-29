@@ -51,6 +51,18 @@ class _ShowManuCoffeeMoldUIState extends State<ShowManuCoffeeMoldUI> {
         .snapshots();
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'เมนู ปั้น',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 23,
+              color: Color(0xff955000)
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xffFFA238),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(

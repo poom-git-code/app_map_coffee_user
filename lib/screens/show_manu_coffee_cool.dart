@@ -51,6 +51,18 @@ class _ShowManuCoffeeCoolUIState extends State<ShowManuCoffeeCoolUI> {
         .snapshots();
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'เมนู เย็น',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 23,
+              color: Color(0xff955000)
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xffFFA238),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -124,6 +136,7 @@ class _ShowManuCoffeeCoolUIState extends State<ShowManuCoffeeCoolUI> {
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2
                       ),
+
                     );
                   },
                 ),

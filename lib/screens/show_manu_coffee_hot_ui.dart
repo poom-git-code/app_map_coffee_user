@@ -51,6 +51,18 @@ class _ShowManuCoffeeHotUIState extends State<ShowManuCoffeeHotUI> {
         .snapshots();
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'เมนู ร้อน',
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 23,
+              color: Color(0xff955000)
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: const Color(0xffFFA238),
+      ),
       body: Stack(
         children: [
           SingleChildScrollView(
@@ -102,9 +114,8 @@ class _ShowManuCoffeeHotUIState extends State<ShowManuCoffeeHotUI> {
                                           fit: BoxFit.cover,
                                         ),
                                         SizedBox(height: wi * 0.025,),
-                                        Text(
-                                          "${(snapshot.data! as QuerySnapshot).docs[index]['manuname']}" +
-                                          "   ${(snapshot.data! as QuerySnapshot).docs[index]['price']} บ.",
+                                        Text("${(snapshot.data! as QuerySnapshot).docs[index]['manuname']}" +
+                                            "   ${(snapshot.data! as QuerySnapshot).docs[index]['price']} บ.",
                                           style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontSize: 14,
@@ -125,6 +136,7 @@ class _ShowManuCoffeeHotUIState extends State<ShowManuCoffeeHotUI> {
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2
                       ),
+
                     );
                   },
                 ),

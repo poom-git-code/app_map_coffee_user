@@ -1,8 +1,6 @@
-import 'package:app_map_coffee_user/screens/show_manu_coffee_hot_ui.dart';
+import 'package:app_map_coffee_user/screens/show_manu_coffee_all_ui.dart';
 import 'package:app_map_coffee_user/screens/show_manu_sweets_ui.dart';
 import 'package:flutter/material.dart';
-
-import 'manu_type.dart';
 
 
 class ShowManuUI extends StatefulWidget {
@@ -92,7 +90,7 @@ class _ShowManuUIState extends State<ShowManuUI> {
                     Expanded(
                       child: TabBarView(
                         children: [
-                          SelectManuPage(
+                          ShowManuCoffeeAllUI(
                              widget.id,
                              widget.Image,
                              widget.User_ID,
@@ -107,7 +105,7 @@ class _ShowManuUIState extends State<ShowManuUI> {
                              widget.Longitude,
                              widget.Province_ID
                          ),
-                         ShowManuSweetCoffeeUI(
+                          ShowManuSweetCoffeeUI(
                              widget.id,
                              widget.Image,
                              widget.User_ID,

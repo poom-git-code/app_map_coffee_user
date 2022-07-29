@@ -1,5 +1,6 @@
+import 'package:app_map_coffee_user/screens/reviwe_shop_ui.dart';
 import 'package:app_map_coffee_user/screens/show_image_ui.dart';
-import 'package:app_map_coffee_user/screens/show_manu_coffee_hot_ui.dart';
+import 'package:app_map_coffee_user/screens/show_manu_coffee_all_ui.dart';
 import 'package:app_map_coffee_user/screens/show_manu_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -330,7 +331,26 @@ class _ShowShopUIState extends State<ShowShopUI> {
                         width: wi * 0.3,
                         height: hi * 0.1,
                         child: ElevatedButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(
+                                context,
+                              MaterialPageRoute(builder: (context) => ReviweShopUI(
+                                  widget.id,
+                                  widget.Image,
+                                  widget.User_ID,
+                                  widget.password,
+                                  widget.Email,
+                                  widget.Location_Name,
+                                  widget.Description,
+                                  widget.Contact,
+                                  widget.Office_Hours_Open,
+                                  widget.Office_Hours_close,
+                                  widget.Latitude,
+                                  widget.Longitude,
+                                  widget.Province_ID
+                              ))
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xff955000),
                               shape: RoundedRectangleBorder(

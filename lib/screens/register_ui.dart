@@ -251,7 +251,7 @@ class _RegisterUIState extends State<RegisterUI> {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.red,
+                          backgroundColor: Colors.red,
                           padding: const EdgeInsets.symmetric(
                             vertical: 12.0,
                           ),
@@ -347,6 +347,8 @@ class _RegisterUIState extends State<RegisterUI> {
     );
   }
 
+  bool opne = true;
+
   insertRegisterMapCoffeeShop() async{
     //อัปโหลดรูปรูปไปไว้ที่ storage ของ Firebase เพราะเราต้องการตำแหน่งรูปมาใช้เพื่อเก็บใน firestore
     //ชื่อรูป
@@ -376,6 +378,7 @@ class _RegisterUIState extends State<RegisterUI> {
               nameCtrl.text.trim(),
               emailCtrl.text.trim()
           );
+
 
           if(resultInsertLocation == true)
           {
