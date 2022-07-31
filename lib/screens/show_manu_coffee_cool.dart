@@ -63,87 +63,98 @@ class _ShowManuCoffeeCoolUIState extends State<ShowManuCoffeeCoolUI> {
         centerTitle: true,
         backgroundColor: const Color(0xffFFA238),
       ),
-      body: Stack(
-        children: [
-          SingleChildScrollView(
-            child: Container(
-              color: const Color(0x44FFA238),
-              width: wi,
-              height: hi,
-              child: Padding(
-                padding: EdgeInsets.only(top: hi * 0.02),
-                child: StreamBuilder(
-                  stream: _userStrem,
-                  builder: (context, snapshot){
-                    if(snapshot.hasError)
-                    {
-                      return const Center(
-                        child: Text('พบข้อผิดพลาดกรุณาลองใหม่อีกครั้ง'),
-                      );
-                    }
-                    if(snapshot.connectionState == ConnectionState.waiting)
-                    {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
-                    return GridView.builder(
-                      // ignore: missing_return
-                      itemBuilder: (context, index){
-                        return Padding(
-                          padding: const EdgeInsets.all(5),
-                          child: Stack(
-                            children: [
-                              Center(
-                                child: Material(
-                                  color: Colors.white,
-                                  elevation: 7,
-                                  borderRadius: BorderRadius.circular(30),
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  child: InkWell(
-                                    onTap: (){
+      body: SingleChildScrollView(
+        child: Container(
+          color: const Color(0x44FFA238),
+          width: wi,
+          height: hi,
+          child: Padding(
+            padding: EdgeInsets.only(top: hi * 0.02, bottom: 80),
+            child: StreamBuilder(
+              stream: _userStrem,
+              builder: (context, snapshot){
+                if(snapshot.hasError)
+                {
+                  return const Center(
+                    child: Text('พบข้อผิดพลาดกรุณาลองใหม่อีกครั้ง'),
+                  );
+                }
+                if(snapshot.connectionState == ConnectionState.waiting)
+                {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Text(
+                          "กรุณารอสักครู่",
+                          style: TextStyle(
+                              color: Color(0xff955000),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold
+                          ),
+                        ),
+                      ),
+                      Center(
+                        child: CircularProgressIndicator(
+                          color: Color(0xff955000),
+                        ),
+                      ),
+                    ],
+                  );
+                }
+                return GridView.builder(
+                  // ignore: missing_return
+                  itemBuilder: (context, index){
+                    return Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: Stack(
+                        children: [
+                          Center(
+                            child: Material(
+                              color: Colors.white,
+                              elevation: 7,
+                              borderRadius: BorderRadius.circular(30),
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: InkWell(
+                                onTap: (){
 
-                                    },
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        Ink.image(
-                                          image: NetworkImage((snapshot.data! as QuerySnapshot).docs[index]['image']),
-                                          width: wi * 0.82,
-                                          height: wi * 0.35,
-                                          fit: BoxFit.cover,
-                                        ),
-                                        SizedBox(height: wi * 0.025,),
-                                        Text("${(snapshot.data! as QuerySnapshot).docs[index]['manuname']}" +
-                                            "   ${(snapshot.data! as QuerySnapshot).docs[index]['price']} บ.",
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 14,
-                                            color: Colors.black54,
-                                          ),
-                                        ),
-                                        SizedBox(height: 7,),
-                                      ],
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Ink.image(
+                                      image: NetworkImage((snapshot.data! as QuerySnapshot).docs[index]['image']),
+                                      width: wi * 0.82,
+                                      height: wi * 0.35,
+                                      fit: BoxFit.fitHeight,
                                     ),
-                                  ),
+                                    SizedBox(height: wi * 0.025,),
+                                    Text("${(snapshot.data! as QuerySnapshot).docs[index]['manuname']}" +
+                                        "   ${(snapshot.data! as QuerySnapshot).docs[index]['price']} บ.",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        color: Colors.black54,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ],
+                            ),
                           ),
-                        );
-                      },
-                      itemCount: (snapshot.data! as QuerySnapshot).docs.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2
+                        ],
                       ),
-
                     );
                   },
-                ),
-              ),
+                  itemCount: (snapshot.data! as QuerySnapshot).docs.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2
+                  ),
+                );
+              },
             ),
           ),
-        ],
+        ),
       ),
     );
   }

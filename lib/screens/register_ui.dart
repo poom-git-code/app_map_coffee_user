@@ -465,7 +465,7 @@ class _RegisterUIState extends State<RegisterUI> {
                               )
                                   :
                               Image.asset(
-                                'assets/images/User-group-icon.png',
+                                'assets/images/icon_user.png',
                                 fit: BoxFit.fill,
                               ),
                             ),
@@ -689,48 +689,46 @@ class _RegisterUIState extends State<RegisterUI> {
                   ),//email
                   Padding(
                     padding: const EdgeInsets.only(right: 30, left: 30, top: 30, bottom: 40),
-                    child: Container(
+                    child: SizedBox(
                       width: wi,
                       height: 50,
-                      child: Expanded(
-                        child: ElevatedButton(
-                          onPressed: (){
-                            if(userCtrl.text.trim().length == 0){
-                              showWarningDialog('กรุณาใส่ชื่อผู้ใช้ด้วย!!!');
+                      child: ElevatedButton(
+                        onPressed: (){
+                          if(userCtrl.text.trim().length == 0){
+                            showWarningDialog('กรุณาใส่ชื่อผู้ใช้ด้วย!!!');
+                          }
+                          else if(passwordCtrl.text.trim().length == 0 && confirmpasswordCtrl.text.trim().length == 0){
+                            showWarningDialog('กรุณาใส่รหัสผ่านด้วย!!!');
+                          }
+                          else if(passwordCtrl.text.trim().length != confirmpasswordCtrl.text.trim().length){
+                            showWarningDialog('รหัสผ่านและยื่นยันรหัสผ่านไม่ตรงกัน');
+                          }
+                          else if(_image == null){
+                            showWarningDialog('กรุณาใส่รูปภาพด้วย!!!');
+                          }
+                          else if(nameCtrl.text.trim().length == 0){
+                            showWarningDialog('กรุณาใส่ชื่อเล่นด้วย!!!');
+                          }
+                          else if(emailCtrl.text.trim().length == 0){
+                            showWarningDialog('กรุณาใส่อีเมลด้วย!!!');
+                          }
+                          else{
+                            try{
+                              showConfirmInsertDialog();
+                            }catch(e){
+                              showWarningDialog('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง');
                             }
-                            else if(passwordCtrl.text.trim().length == 0 && confirmpasswordCtrl.text.trim().length == 0){
-                              showWarningDialog('กรุณาใส่รหัสผ่านด้วย!!!');
-                            }
-                            else if(passwordCtrl.text.trim().length != confirmpasswordCtrl.text.trim().length){
-                              showWarningDialog('รหัสผ่านและยื่นยันรหัสผ่านไม่ตรงกัน');
-                            }
-                            else if(_image == null){
-                              showWarningDialog('กรุณาใส่รูปภาพด้วย!!!');
-                            }
-                            else if(nameCtrl.text.trim().length == 0){
-                              showWarningDialog('กรุณาใส่ชื่อเล่นด้วย!!!');
-                            }
-                            else if(emailCtrl.text.trim().length == 0){
-                              showWarningDialog('กรุณาใส่อีเมลด้วย!!!');
-                            }
-                            else{
-                              try{
-                                showConfirmInsertDialog();
-                              }catch(e){
-                            showWarningDialog('เกิดข้อผิดพลาดกรุณาลองใหม่อีกครั้ง');
-                            }
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            primary: Color(0xff955000)
-                          ),
-                          child: const Text(
-                            'สมัครสมาชิก',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20
-                            ),
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xff955000)
+                        ),
+                        child: const Text(
+                          'สมัครสมาชิก',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20
                           ),
                         ),
                       ),

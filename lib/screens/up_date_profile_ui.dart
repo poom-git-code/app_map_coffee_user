@@ -437,7 +437,7 @@ class _UpdateProfileUIState extends State<UpdateProfileUI> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'สมัครสมาชิก',
+          'ข้อมูลส่วนตัว',
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 23,

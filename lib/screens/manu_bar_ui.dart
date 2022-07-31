@@ -88,7 +88,7 @@ class _MenuBarUiState extends State<MenuBarUi> {
                             color: Colors.white,
                             image: DecorationImage(
                               image: NetworkImage(
-                                'https://media.istockphoto.com/photos/yellow-coffee-grinder-with-a-bag-of-beans-and-a-coffee-cup-an-saucer-picture-id1168225732?k=20&m=1168225732&s=612x612&w=0&h=k64ercFkQxLrJP2sWyHNwmtVeSymemsuTL5Uo4FFiRE=',
+                                'https://i0.wp.com/i.imgur.com/Ereq2.jpg?w=960',
                               ),
                               fit: BoxFit.cover,
                             ),

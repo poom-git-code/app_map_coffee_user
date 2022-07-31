@@ -27,7 +27,7 @@ class _StarFiveUIState extends State<StarFiveUI> {
         .snapshots();
 
     return Padding(
-      padding: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(top: 10, bottom: 50),
       child: StreamBuilder(
         stream: _manuStrem,
         builder: (context, snapshot){
@@ -39,8 +39,25 @@ class _StarFiveUIState extends State<StarFiveUI> {
           }
           if(snapshot.connectionState == ConnectionState.waiting)
           {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: Text(
+                    "กรุณารอสักครู่",
+                    style: TextStyle(
+                        color: Color(0xff955000),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                    ),
+                  ),
+                ),
+                Center(
+                  child: CircularProgressIndicator(
+                    color: Color(0xff955000),
+                  ),
+                ),
+              ],
             );
           }
           return ListView.separated(

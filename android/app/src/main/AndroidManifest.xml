@@ -15,7 +15,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
    <application
-        android:label="app_map_coffee_user"
+        android:label="MapCoffee"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"

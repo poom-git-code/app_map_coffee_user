@@ -33,7 +33,7 @@ class _ShowimageMaxSizeState extends State<ShowimageMaxSize> {
               child: FadeInImage.assetNetwork(
                 placeholder: 'assets/images/Coffee_icon.png',
                 image: widget.url,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
               ),
             ),
             Container(

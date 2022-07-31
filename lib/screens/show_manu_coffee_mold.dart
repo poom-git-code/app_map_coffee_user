@@ -83,8 +83,25 @@ class _ShowManuCoffeeMoldUIState extends State<ShowManuCoffeeMoldUI> {
                     }
                     if(snapshot.connectionState == ConnectionState.waiting)
                     {
-                      return const Center(
-                        child: CircularProgressIndicator(),
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                              "กรุณารอสักครู่",
+                              style: TextStyle(
+                                  color: Color(0xff955000),
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold
+                              ),
+                            ),
+                          ),
+                          Center(
+                            child: CircularProgressIndicator(
+                              color: Color(0xff955000),
+                            ),
+                          ),
+                        ],
                       );
                     }
                     return GridView.builder(
@@ -101,9 +118,6 @@ class _ShowManuCoffeeMoldUIState extends State<ShowManuCoffeeMoldUI> {
                                   borderRadius: BorderRadius.circular(30),
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
                                   child: InkWell(
-                                    onTap: (){
-
-                                    },
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
@@ -111,7 +125,7 @@ class _ShowManuCoffeeMoldUIState extends State<ShowManuCoffeeMoldUI> {
                                           image: NetworkImage((snapshot.data! as QuerySnapshot).docs[index]['image']),
                                           width: wi * 0.82,
                                           height: wi * 0.35,
-                                          fit: BoxFit.cover,
+                                          fit: BoxFit.fitHeight,
                                         ),
                                         SizedBox(height: wi * 0.025,),
                                         Text("${(snapshot.data! as QuerySnapshot).docs[index]['manuname']}" +

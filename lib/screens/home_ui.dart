@@ -149,12 +149,18 @@ class _HomeUIState extends State<HomeUI> {
                   buildingsEnabled: false,
                   zoomControlsEnabled: false,
                   scrollGesturesEnabled: false,
+                  zoomGesturesEnabled: false,
+                  liteModeEnabled: false,
+                  compassEnabled: false,
+                  rotateGesturesEnabled: false,
+                  tiltGesturesEnabled: false,
+                  trafficEnabled: false,
                 ),
               ),
               SingleChildScrollView(
                 child: SizedBox(
                   width: wi,
-                  height: hi * 0.486,
+                  height: hi * 0.6,
                   child: StreamBuilder(
                     stream: _userStrem,
                     builder: (context, snapshot){
